@@ -1,0 +1,17 @@
+[Unit]
+Description=UniFi RFC4638 PPPoE MTU Enabler
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+TimeoutStartSec=60
+ExecStartPre=/bin/sleep 30
+ExecStart=/bin/bash /data/unifi-rfc4638/monitor-mtu.sh
+Restart=always
+RestartSec=2
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
